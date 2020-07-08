@@ -21,10 +21,13 @@ api = Api(app)
 @app.before_first_request
 def create_tables():
     db.create_all()
+    #admin
     if not UserModel.find_by_role("admin"):
         user = UserModel('bahareh', '12345')
         user.role = 'admin'
         user.save_to_db()
+
+
 
 
 jwt = JWTManager(app)
