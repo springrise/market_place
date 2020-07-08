@@ -4,6 +4,7 @@ from flask_jwt_extended import JWTManager
 
 from blacklist import BLACKLIST
 from db import db
+from models.user import UserModel
 from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
 
 app = Flask(__name__)
@@ -20,7 +21,10 @@ api = Api(app)
 @app.before_first_request
 def create_tables():
     db.create_all()
-    #define admin
+    if not UserModel.find_by_role("admin"):
+        user = UserModel('bahareh', '12345')
+        user.role = 'admin'
+        user.save_to_db()
 
 
 jwt = JWTManager(app)
