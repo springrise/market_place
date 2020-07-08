@@ -20,7 +20,7 @@ class UserModel(db.Model):
             'id': self.id,
             'username': self.username,
             'role': self.role,
-            'register_at': self.registered_at
+            'register_at': self.registered_at.isoformat()
         }
 
     def save_to_db(self):
