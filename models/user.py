@@ -9,7 +9,7 @@ class UserModel(db.Model):
     username = db.Column(db.String(80))
     password = db.Column(db.String(80))
     role = db.Column(db.String(80), default='user')
-    registered_at = db.Column(db.Datetime, default=datetime.utcnow())
+    registered_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __init__(self, username, password):
         self.username = username
