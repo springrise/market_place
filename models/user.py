@@ -11,6 +11,8 @@ class UserModel(db.Model):
     role = db.Column(db.String(80), default='user')
     registered_at = db.Column(db.DateTime, default=datetime.utcnow())
 
+    items = db.relationship('ItemModel', lazy='dynamic')
+
     def __init__(self, username, password):
         self.username = username
         self.password = password
